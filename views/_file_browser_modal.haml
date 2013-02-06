@@ -1,0 +1,25 @@
+#file_browser.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "file_browser_label", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#file_browser_label{'data-bind'=>'text: currentDir'}
+  .modal-body
+    %div{'data-bind' => 'ifnot: files()'}
+      Loading&hellip;
+    %ul.list-none
+      %li.path
+        %a{:href => '#', 'data-bind'=>'click: $root.upDir'}
+          %span
+            %i.icon-folder-close
+          %span
+            \..
+      / ko foreach: files
+      %li.path
+        %a{:href =>'#', 'data-bind'=>'value: $data, click: $root.browseItemClick'}
+          %span{'data-bind'=>'if: isDir'}
+            %i.icon-folder-close
+          %span{'data-bind'=>'ifnot: isDir'}
+            %i.icon-file
+          %span{'data-bind'=>'text: Util.basename(path())'}
+      / /ko
+  .modal-footer
+    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close

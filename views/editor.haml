@@ -1,0 +1,17 @@
+%script{:src => JS.markdown}
+%script{:src => JS.textile}
+%script{:src => JS.knockout}
+%script{:src => '/js/viewmodels/editorvms.js'}
+%script{:src => '/js/editor.js'}
+
+.row-fluid
+  #settings.accordion-body.collapse
+    .accordion-inner
+      %select{"data-bind" => "value: converter, options: converters, optionsText: 'name'"}
+
+.row-fluid
+  .span6
+    %textarea.raw-contents{'data-bind'=>"value: currentItem() ? currentItem().contents : null, valueUpdate: 'keyup'"}
+  .span6.preview{'data-bind'=>'html: preview'}
+
+= partial :file_browser_modal

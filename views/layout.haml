@@ -1,0 +1,36 @@
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %title Typemanship
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+
+    %link{:href => STYLESHEETS.bootstrap, :rel => "stylesheet"}
+    %link{:href => STYLESHEETS.bootstrap_responsive, :rel => "stylesheet"}
+    %link{:href => "/css/site.css", :rel => "stylesheet"}
+
+    %script{:src => JS.jquery} 
+    %script{:src => JS.bootstrap} 
+    %script{:src => "/js/util.js"}
+    %script{:src => "/js/site.js"}
+    
+    / HTML5 shim, for IE6-8 support of HTML5 elements
+    /[if lt IE 9]
+      %script{:src=>"http://html5shim.googlecode.com/svn/trunk/html5.js"}
+  %body
+    =partial :navbar
+    .container-fluid.main-content
+      #flash-messages
+      = yield
+
+  / / jqueryFileBrowser Stuff / SEE: http://www.abeautifulsite.net/blog/2008/03/jquery-file-tree/#download
+  / %link{:href => "/lib/jqueryFileTree.css", :rel => "stylesheet"}
+  / %script{:href => "/lib/jqueryFileTree.js"}
+
+
+=# Loading Modal
+#loading_modal.modal.hide.loading
+  .modal-body
+    %h3{:style => "text-align: center; "}
+      Please Wait...
+    .progress.progress-striped.active{:style => "margin-top: 40px;"}
+      .bar{:style => "width: 100%;"}
